@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web - Tugas Cloud Computing</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --accent-color: #4f46e5;
+            --border-color: #e5e7eb;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #818cf8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        p.subtitle { color: var(--accent-color); font-weight: 600; margin-bottom: 1rem; }
+
+        .btn-quote {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .btn-quote:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .quote-box {
+            margin-top: 1rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Mode Gelap</button>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <!-- Inisial Nama Anda -->
+            <div class="avatar">M</div> 
+            <h1>[Nama Anda]</h1>
+            <p class="subtitle">Cloud Computing Student</p>
+            <p>NIM: [NIM Anda]</p>
+            <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border-color);">
+            <p>Website statis ini dibuat dan di-deploy secara publik untuk pemenuhan tugas praktikum.</p>
+        </div>
+
+        <div class="card">
+            <h3>Kutipan Hari Ini</h3>
+            <p id="quote" class="quote-box">"Klik tombol di bawah untuk melihat kutipan!"</p>
+            <button class="btn-quote" onclick="generateQuote()">Acak Kutipan</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Interactive Web Project</p>
+    </footer>
+
+    <script>
+        // Fitur Dark Mode
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.querySelector('.theme-toggle');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                btn.textContent = '🌙 Mode Gelap';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️ Mode Terang';
+            }
+        }
+
+        // Fitur Random Quote Generator
+        const quotes = [
+            "Lakukan apa yang bisa kamu lakukan dengan apa yang kamu miliki.",
+            "Teknologi terbaik adalah teknologi yang membuat orang berkumpul.",
+            "Proses deployment yang sukses berawal dari satu commit sederhana.",
+            "Belajar cloud computing membuka pintu masa depan teknologi.",
+            "Kesalahan adalah bukti bahwa Anda sedang mencoba sesuatu yang baru."
+        ];
+
+        function generateQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote').textContent = `"${quotes[randomIndex]}"`;
+        }
+    </script>
+</body>
+</html>
